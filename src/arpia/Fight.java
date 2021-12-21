@@ -29,7 +29,7 @@ public class Fight extends JFrame {
 	ImageIcon firstMonsterIcon = new ImageIcon("src/arpia/img/monster/mushroom1_default.gif");
 
 	JLabel characterLabel = new JLabel();  // Player image
-	JLabel characterHPLabel = new JLabel(Player.getCurrentHealthPoint()+" / "+Player.getMaxHealthPoint());  // Player HP
+	JLabel characterHPLabel = new JLabel("HP : " + Player.getCurrentHealthPoint()+" / "+Player.getMaxHealthPoint());  // Player HP
 	JLabel monsterLabel = new JLabel();  // Monster image
 	JLabel monsterHPLabel = new JLabel();  // Monster HP
 	JLabel skilllabel = new JLabel();  // skill image
@@ -60,7 +60,8 @@ public class Fight extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(850, 650);
 		this.setResizable(false); // display resizing false
-		setVisible(true);
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
 
 		setContentPane(new JLabel(new ImageIcon("src/arpia/img/background/던전 1.png")));
 
@@ -69,8 +70,8 @@ public class Fight extends JFrame {
 		characterLabel.setLocation(650, 400);
 		characterLabel.setSize(54, 84);
 		//characterHPLabel
-		characterHPLabel.setLocation(635, 360);
-		characterHPLabel.setSize(100, 30);
+		characterHPLabel.setLocation(610, 360);
+		characterHPLabel.setSize(150, 30);
 		characterHPLabel.setForeground(Color.white);
 		characterHPLabel.setFont(characterHPLabel.getFont().deriveFont(20.0f));
 		this.add(characterLabel);

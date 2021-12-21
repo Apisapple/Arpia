@@ -32,6 +32,7 @@ public class OutSchool extends JFrame {
 		this.setSize(850, 650);
 		this.setLayout(null);
 		this.setResizable(false); // 창 크기 조절 불가
+		this.setLocationRelativeTo(null);
 
 		setContentPane(new JLabel(
 				new ImageIcon("./src/arpia/img/background/학교 지도 2.png")));
@@ -46,6 +47,7 @@ public class OutSchool extends JFrame {
 
 		BtToSchool.setLocation(440, 285);
 		BtToSchool.setSize(100, 28);
+		BtToSchool.setContentAreaFilled(false);  // 버튼 영역 배경 표시
 
 		BtToFight.setLocation(190, 520);
 		BtToFight.setSize(150, 88);
