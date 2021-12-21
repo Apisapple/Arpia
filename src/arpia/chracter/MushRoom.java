@@ -5,7 +5,7 @@ public class MushRoom implements Monster {
 	private Integer healthPoint;
 	private Integer attackPoint;
 	private Integer exp;
-	
+
 	public MushRoom() {
 		this.healthPoint = 100;
 		this.attackPoint = 5;
@@ -28,9 +28,9 @@ public class MushRoom implements Monster {
 	public Integer giveDamageToPlayer() {
 		return attackPoint;
 	}
-	
+
 	public Integer getExp() {
 		return exp;
 	}
-	
+
 }

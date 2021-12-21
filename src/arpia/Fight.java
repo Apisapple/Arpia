@@ -1,34 +1,26 @@
 package arpia;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import arpia.chracter.MushRoom;
 import arpia.chracter.Player;
 import arpia.config.JFrameConfig;
+import arpia.skill.Fire;
+import arpia.skill.FireBall;
+import arpia.skill.FireBurst;
 
 public class Fight extends JFrame {
 
-	ImageIcon skillFire = new ImageIcon(
-			"./src/arpia/img/attack/skill_fire.png");
-	ImageIcon skillFireBall = new ImageIcon(
-			"./src/arpia/img/attack/skill_fireball.png");
-	ImageIcon skillFireBurst = new ImageIcon(
-			"./src/arpia/img/attack/skill_fireburst.png");
+	private static final long serialVersionUID = 1L;
+	private Fire fire = new Fire();
+	private FireBall fireBall = new FireBall();
+	private FireBurst fireBurst = new FireBurst();
 	ImageIcon firstMonsterIcon = new ImageIcon(
 			"src/arpia/img/monster/mushroom1_default.gif");
 
@@ -40,18 +32,19 @@ public class Fight extends JFrame {
 	JLabel skilllabel = new JLabel(); // skill image
 
 	// skill fire
-	ImageIcon fire = new ImageIcon("./src/arpia/img/attack/attack_fire.png");
-	JButton Btn_fire = new JButton(fire);
+	JButton btnFire = fire.setSkillButton();
+	ImageIcon fireImg = fire.getEffectImg();
+	JLabel fireLabel = fire.setSkillLabel();
 
 	// skill fireball
-	ImageIcon fireball = new ImageIcon(
-			"./src/arpia/img/attack/attack_fireball.png");
-	JButton Btn_fireball = new JButton(fireball);
+	JButton btnFireBall = fireBall.setSkillButton();
+	ImageIcon fireBallImg = fireBall.getButtonImg();
+	JLabel fireBallLabel = fireBall.setSkillLabel();
 
 	// skill fireburst
-	ImageIcon fireburst = new ImageIcon(
-			"./src/arpia/img/attack/attack_fireburst.png");
-	JButton Btn_fireburst = new JButton(fireburst);
+	JButton btnFireBurst = fireBurst.setSkillButton();
+	ImageIcon fireBurstImg = fireBurst.getButtonImg();
+	JLabel fireBurstLabel = fireBurst.setSkillLabel();
 
 	// item
 	ImageIcon item = new ImageIcon("./src/arpia/img/attack/item.png");
@@ -71,7 +64,7 @@ public class Fight extends JFrame {
 		this.setLocationRelativeTo(null);
 
 		setContentPane(
-				new JLabel(new ImageIcon("src/arpia/img/background/?˜? „ 1.png")));
+				new JLabel(new ImageIcon("src/arpia/img/background/?ï¿½ï¿½?ï¿½ï¿½ 1.png")));
 
 		// add Player to Frame
 		characterLabel.setIcon(Player.getLeftimage());
@@ -97,23 +90,9 @@ public class Fight extends JFrame {
 		this.add(monsterHPLabel);
 
 		// ---attack buttons, item, run------------------
-		Btn_fire.setLocation(450, 500);
-		Btn_fire.setSize(50, 50);
-		Btn_fire.setContentAreaFilled(false);
-		Btn_fire.setBorderPainted(false);
-		this.add(Btn_fire);
-
-		Btn_fireball.setLocation(500, 500);
-		Btn_fireball.setSize(50, 50);
-		Btn_fireball.setContentAreaFilled(false);
-		Btn_fireball.setBorderPainted(false);
-		this.add(Btn_fireball);
-
-		Btn_fireburst.setLocation(550, 500);
-		Btn_fireburst.setSize(50, 50);
-		Btn_fireburst.setContentAreaFilled(false);
-		Btn_fireburst.setBorderPainted(false);
-		this.add(Btn_fireburst);
+		this.add(btnFire);
+		this.add(btnFireBall);
+		this.add(btnFireBurst);
 
 		Btn_item.setLocation(600, 500);
 		Btn_item.setSize(50, 50);
@@ -129,10 +108,10 @@ public class Fight extends JFrame {
 		// --------------------------------------
 
 		// Damage
-		System.out.println(Player.getCurrentHealthPoint());
+		// System.out.println(Player.getCurrentHealthPoint());
 		MushRoom mushRoom = new MushRoom();
 		// Player.getDamageByMonster(mushRoom.giveDamageToPlayer());
-		System.out.println(Player.getCurrentHealthPoint());
+		// System.out.println(Player.getCurrentHealthPoint());
 
 		// Run Button active
 		Btn_run.addActionListener(new ActionListener() {
@@ -143,95 +122,63 @@ public class Fight extends JFrame {
 			}
 		});
 
-		// Btn_fire.addActionListener(e ->
-		// battleBetweenPlayerAndMonster(mushRoom));
-
-		// myCollection.stream().map(new Mapper<String,String>() {
-		// public String map(String input) {
-		// return new StringBuilder(input).reverse().toString();
-		// }
-		// });
-
-		// myCollection.stream().map(input -> new
-		// StringBuilder(input).reverse().toString());
-
 		// ===== Skill Button active ======
-		Btn_fireball.addActionListener(new ActionListener() {
+		btnFireBall.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				skilllabel.setIcon(skillFireBall);
-				skilllabel.setSize(200, 70);
-				skilllabel.setLocation(115, 420);
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
-						add(skilllabel, 0);
+						add(fireBallLabel, 0);
 						try {
 							Thread.sleep(600);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						remove(skilllabel);
+						remove(fireBallLabel);
 					}
 				}).start();
-
-				System.out.println(Player.getExperience());
 				if (Boolean.FALSE.equals(mushRoom
 						.getDamageByPlayer(Player.getAttackPoint() * 3))) {
 					Player.addExperience(mushRoom.getExp());
-					System.out.println(Player.getExperience());
 				}
 			}
 		});
 
-		Btn_fire.addActionListener(new ActionListener() {
+		btnFire.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				skilllabel.setIcon(skillFire);
-				skilllabel.setSize(70, 60);
-				skilllabel.setLocation(135, 420);
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
-						add(skilllabel, 0);
+						add(fireLabel, 0);
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						remove(skilllabel);
+						remove(fireLabel);
 					}
 				}).start();
 			}
 		});
 
-		Btn_fireburst.addActionListener(new ActionListener() {
+		btnFireBurst.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				skilllabel.setIcon(skillFireBurst);
-				skilllabel.setSize(200, 70);
-				skilllabel.setLocation(125, 410);
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
-						add(skilllabel, 1);
+						add(fireBurstLabel, 1);
 						try {
 							Thread.sleep(700);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						remove(skilllabel);
+						remove(fireBurstLabel);
 					}
 				}).start();
 			}
 		});
 	}
-
-	private void battleBetweenPlayerAndMonster(MushRoom mushRoom) {
-
-	}
-
 }
