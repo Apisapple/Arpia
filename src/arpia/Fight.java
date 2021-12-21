@@ -116,6 +116,33 @@ public class Fight extends JFrame {
 				setVisible(false);
 			}
 		});
+
+		Btn_fire.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(Player.getExperience());
+				if (Boolean.FALSE.equals(mushRoom
+						.getDamageByPlayer(Player.getAttackPoint() * 3))) {
+					Player.addExperience(mushRoom.getExp());
+					System.out.println(Player.getExperience());
+				}
+			}
+		});
+		// Btn_fire.addActionListener(e ->
+		// battleBetweenPlayerAndMonster(mushRoom));
+
+		// myCollection.stream().map(new Mapper<String,String>() {
+		// public String map(String input) {
+		// return new StringBuilder(input).reverse().toString();
+		// }
+		// });
+
+		// myCollection.stream().map(input -> new
+		// StringBuilder(input).reverse().toString());
+
 	}
 
+	private void battleBetweenPlayerAndMonster(MushRoom mushRoom) {
+
+	}
 }

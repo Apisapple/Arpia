@@ -4,11 +4,6 @@ import javax.swing.ImageIcon;
 import arpia.config.PlayerConfig;
 
 public class Player {
-
-	private Player() throws IllegalAccessException {
-		throw new IllegalAccessException("this game is single player");
-	}
-
 	private static Integer maxHealthPoint = PlayerConfig.getPlayerHealth();
 	private static Integer currnetHealthPoint = PlayerConfig.getPlayerHealth();
 	private static Integer attackPoint = PlayerConfig.getPlayerAttackPoint();
@@ -39,6 +34,50 @@ public class Player {
 			experience = experience - expForLevelUp;
 			expForLevelUp += 100;
 		}
+	}
+
+	public static Integer getCurrnetHealthPoint() {
+		return currnetHealthPoint;
+	}
+
+	public static void setCurrnetHealthPoint(Integer currnetHealthPoint) {
+		Player.currnetHealthPoint = currnetHealthPoint;
+	}
+
+	public static Integer getLevel() {
+		return level;
+	}
+
+	public static void setLevel(Integer level) {
+		Player.level = level;
+	}
+
+	public static Integer getExperience() {
+		return experience;
+	}
+
+	public static void setExperience(Integer experience) {
+		Player.experience = experience;
+	}
+
+	public static Integer getExpForLevelUp() {
+		return expForLevelUp;
+	}
+
+	public static void setExpForLevelUp(Integer expForLevelUp) {
+		Player.expForLevelUp = expForLevelUp;
+	}
+
+	public static void setMaxHealthPoint(Integer maxHealthPoint) {
+		Player.maxHealthPoint = maxHealthPoint;
+	}
+
+	public static void setAttackPoint(Integer attackPoint) {
+		Player.attackPoint = attackPoint;
+	}
+
+	private Player() throws IllegalAccessException {
+		throw new IllegalAccessException("this game is single player");
 	}
 
 	public static Integer getCurrentHealthPoint() {
