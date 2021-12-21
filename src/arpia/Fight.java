@@ -1,27 +1,20 @@
 package arpia;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import arpia.chracter.MushRoom;
 import arpia.chracter.Player;
 import arpia.config.JFrameConfig;
 
 public class Fight extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 
 	ImageIcon skillFire = new ImageIcon(
 			"./src/arpia/img/attack/skill_fire.png");
@@ -76,6 +69,7 @@ public class Fight extends JFrame {
 		characterLabel.setIcon(Player.getLeftimage());
 		characterLabel.setLocation(650, 400);
 		characterLabel.setSize(54, 84);
+
 		// characterHPLabel
 		characterHPLabel.setLocation(635, 360);
 		characterHPLabel.setSize(100, 30);
@@ -128,10 +122,10 @@ public class Fight extends JFrame {
 		// --------------------------------------
 
 		// Damage
-		System.out.println(Player.getCurrentHealthPoint());
+		// System.out.println(Player.getCurrentHealthPoint());
 		MushRoom mushRoom = new MushRoom();
 		// Player.getDamageByMonster(mushRoom.giveDamageToPlayer());
-		System.out.println(Player.getCurrentHealthPoint());
+		// System.out.println(Player.getCurrentHealthPoint());
 
 		// Run Button active
 		Btn_run.addActionListener(new ActionListener() {
@@ -141,18 +135,6 @@ public class Fight extends JFrame {
 				setVisible(false);
 			}
 		});
-
-		// Btn_fire.addActionListener(e ->
-		// battleBetweenPlayerAndMonster(mushRoom));
-
-		// myCollection.stream().map(new Mapper<String,String>() {
-		// public String map(String input) {
-		// return new StringBuilder(input).reverse().toString();
-		// }
-		// });
-
-		// myCollection.stream().map(input -> new
-		// StringBuilder(input).reverse().toString());
 
 		// ===== Skill Button active ======
 		Btn_fireball.addActionListener(new ActionListener() {
@@ -168,18 +150,15 @@ public class Fight extends JFrame {
 						try {
 							Thread.sleep(600);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						remove(skilllabel);
 					}
 				}).start();
 
-				System.out.println(Player.getExperience());
 				if (Boolean.FALSE.equals(mushRoom
 						.getDamageByPlayer(Player.getAttackPoint() * 3))) {
 					Player.addExperience(mushRoom.getExp());
-					System.out.println(Player.getExperience());
 				}
 			}
 		});
@@ -197,7 +176,6 @@ public class Fight extends JFrame {
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						remove(skilllabel);
@@ -219,7 +197,6 @@ public class Fight extends JFrame {
 						try {
 							Thread.sleep(700);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						remove(skilllabel);
