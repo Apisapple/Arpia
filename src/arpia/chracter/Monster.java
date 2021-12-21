@@ -2,7 +2,7 @@ package arpia.chracter;
 
 public interface Monster {
 
-  public Boolean getDamageByPlayer(Integer attackPoint);
+	public Boolean getDamageByPlayer(Integer attackPoint);
 
-  public Integer giveDamageToPlayer();
+	public Integer giveDamageToPlayer();
 }
