@@ -23,27 +23,34 @@ import arpia.config.JFrameConfig;
 
 public class Fight extends JFrame {
 
-	ImageIcon skillFire = new ImageIcon("./src/arpia/img/attack/skill_fire.png");
-	ImageIcon skillFireBall = new ImageIcon("./src/arpia/img/attack/skill_fireball.png");
-	ImageIcon skillFireBurst = new ImageIcon("./src/arpia/img/attack/skill_fireburst.png");
-	ImageIcon firstMonsterIcon = new ImageIcon("src/arpia/img/monster/mushroom1_default.gif");
+	ImageIcon skillFire = new ImageIcon(
+			"./src/arpia/img/attack/skill_fire.png");
+	ImageIcon skillFireBall = new ImageIcon(
+			"./src/arpia/img/attack/skill_fireball.png");
+	ImageIcon skillFireBurst = new ImageIcon(
+			"./src/arpia/img/attack/skill_fireburst.png");
+	ImageIcon firstMonsterIcon = new ImageIcon(
+			"src/arpia/img/monster/mushroom1_default.gif");
 
-	JLabel characterLabel = new JLabel();  // Player image
-	JLabel characterHPLabel = new JLabel("HP : " + Player.getCurrentHealthPoint()+" / "+Player.getMaxHealthPoint());  // Player HP
-	JLabel monsterLabel = new JLabel();  // Monster image
-	JLabel monsterHPLabel = new JLabel();  // Monster HP
-	JLabel skilllabel = new JLabel();  // skill image
+	JLabel characterLabel = new JLabel(); // Player image
+	JLabel characterHPLabel = new JLabel(Player.getCurrentHealthPoint() + " / "
+			+ Player.getMaxHealthPoint()); // Player HP
+	JLabel monsterLabel = new JLabel(); // Monster image
+	JLabel monsterHPLabel = new JLabel(); // Monster HP
+	JLabel skilllabel = new JLabel(); // skill image
 
 	// skill fire
 	ImageIcon fire = new ImageIcon("./src/arpia/img/attack/attack_fire.png");
 	JButton Btn_fire = new JButton(fire);
 
 	// skill fireball
-	ImageIcon fireball = new ImageIcon("./src/arpia/img/attack/attack_fireball.png");
+	ImageIcon fireball = new ImageIcon(
+			"./src/arpia/img/attack/attack_fireball.png");
 	JButton Btn_fireball = new JButton(fireball);
 
 	// skill fireburst
-	ImageIcon fireburst = new ImageIcon("./src/arpia/img/attack/attack_fireburst.png");
+	ImageIcon fireburst = new ImageIcon(
+			"./src/arpia/img/attack/attack_fireburst.png");
 	JButton Btn_fireburst = new JButton(fireburst);
 
 	// item
@@ -63,7 +70,8 @@ public class Fight extends JFrame {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 
-		setContentPane(new JLabel(new ImageIcon("src/arpia/img/background/ë˜ì „ 1.png")));
+		setContentPane(
+				new JLabel(new ImageIcon("src/arpia/img/background/?˜? „ 1.png")));
 
 		// add Player to Frame
 		characterLabel.setIcon(Player.getLeftimage());
@@ -130,10 +138,22 @@ public class Fight extends JFrame {
 		Btn_run.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new OutSchool();  // scene change to OutSchool
+				new OutSchool(); // scene change to OutSchool
 				setVisible(false);
 			}
 		});
+
+		// Btn_fire.addActionListener(e ->
+		// battleBetweenPlayerAndMonster(mushRoom));
+
+		// myCollection.stream().map(new Mapper<String,String>() {
+		// public String map(String input) {
+		// return new StringBuilder(input).reverse().toString();
+		// }
+		// });
+
+		// myCollection.stream().map(input -> new
+		// StringBuilder(input).reverse().toString());
 
 		// ===== Skill Button active ======
 		Btn_fireball.addActionListener(new ActionListener() {
@@ -155,9 +175,16 @@ public class Fight extends JFrame {
 						remove(skilllabel);
 					}
 				}).start();
+
+				System.out.println(Player.getExperience());
+				if (Boolean.FALSE.equals(mushRoom
+						.getDamageByPlayer(Player.getAttackPoint() * 3))) {
+					Player.addExperience(mushRoom.getExp());
+					System.out.println(Player.getExperience());
+				}
 			}
 		});
-		
+
 		Btn_fire.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,7 +206,7 @@ public class Fight extends JFrame {
 				}).start();
 			}
 		});
-		
+
 		Btn_fireburst.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -201,6 +228,10 @@ public class Fight extends JFrame {
 				}).start();
 			}
 		});
+	}
+
+	private void battleBetweenPlayerAndMonster(MushRoom mushRoom) {
+
 	}
 
 }
